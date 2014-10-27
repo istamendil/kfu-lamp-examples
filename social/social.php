@@ -3,14 +3,14 @@
   <head>
     <title>E-Meet: Cute Animals (EM:CA)</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/social/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/social/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="/social/social.css">
 
     <meta name="description" content="Социальная сеть для любителей ми-ми-ми-животных">
     <meta name="keywords" content="ми-ми-ми, животные, социальная сеть">
 
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/social/js/jquery-2.1.1.min.js"></script>
     <script src="/social/js/main.js"></script>
     <script src="/social/magnific-popup/jquery.magnific-popup.js"></script> 
   </head>
