@@ -71,13 +71,13 @@
   border-color:#D33714;
 }
 #main-navigation li a.pets{
-  background-image:url("/social/flaticons/complete1.png");
+  background-image:url("/social/assets/flaticons/complete1.png");
 }
 #main-navigation li a.profile{
-  background-image:url("/social/flaticons/user.png");
+  background-image:url("/social/assets/flaticons/user.png");
 }
 #main-navigation li a.settings{
-  background-image:url("/social/flaticons/sprocket1.png");
+  background-image:url("/social/assets/flaticons/sprocket1.png");
   background-position:1px;
 }
 
@@ -109,11 +109,11 @@
   background-color:#eee;
 }
 #main-box #news-best-box .moving-button.left{
-  background-image:url('/social/flaticons/arrow39.png');
+  background-image:url('/social/assets/flaticons/arrow39.png');
   float:left;
 }
 #main-box #news-best-box .moving-button.right{
-  background-image:url('/social/flaticons/chevron3.png');
+  background-image:url('/social/assets/flaticons/chevron3.png');
   float:left;
 }
 #main-box #news-best-box .news-container{
