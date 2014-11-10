@@ -1,0 +1,193 @@
+/*
+
+  Colors:
+    blue: #289AB3
+    oranges: #D33714 #FF7D2B #FFBC79
+  
+
+*/
+
+/* USEFUL CLASSES */
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+
+
+#cutemeter{
+  background-color:#FFBC79;
+  border-radius:40px;
+  color:#D33714;
+  font-size:25px;
+  font-weight:bold;
+  height:80px;
+  padding-top:23px;
+  position:fixed;
+  right:20px;
+  text-align:center;
+  transition: all 1s ease;
+  top:20px;
+  width:80px;
+}
+#cutemeter:hover{
+  background-color:#D33714;
+  color:#FFBC79;
+}
+
+#main-navigation{
+  left:10px;
+  list-style:none;
+  margin:0px;
+  padding:0px;
+  position:fixed;
+  top:200px;
+}
+#main-navigation li{
+  margin-bottom:10px;
+}
+#main-navigation li a{
+  background-color: #FFBC79;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size:cover;
+  border:3px solid #FF7D2B;
+  border-radius:25px;
+  display:block;
+  height:50px;
+  transition: all 0.6s ease;
+  width:50px;
+}
+#main-navigation li a:hover{
+  background-color:#FF7D2B;
+}
+#main-navigation li a.current{
+  background-color:#D33714;
+  border-color:#D33714;
+}
+#main-navigation li a.current:hover{
+  background-color:#D33714;
+  border-color:#D33714;
+}
+#main-navigation li a.pets{
+  background-image:url("/social/assets/flaticons/complete1.png");
+}
+#main-navigation li a.profile{
+  background-image:url("/social/assets/flaticons/user.png");
+}
+#main-navigation li a.settings{
+  background-image:url("/social/assets/flaticons/sprocket1.png");
+  background-position:1px;
+}
+
+#main-box{
+  height:1000px;
+  margin:0px auto 0px auto;
+  padding:10px 0px 0px 0px;
+  width:980px;
+}
+
+#main-box #news-best-box{
+  height:250px;
+  margin:10px 0px;
+  overflow:hidden;
+  padding:0px;
+  width:980px;
+}
+#main-box #news-best-box .moving-button{
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor:pointer;
+  height:100%;
+  padding:0px;
+  width:30px;
+  z-index:100;
+}
+#main-box #news-best-box .moving-button:hover{
+  background-color:#eee;
+}
+#main-box #news-best-box .moving-button.left{
+  background-image:url('/social/assets/flaticons/arrow39.png');
+  float:left;
+}
+#main-box #news-best-box .moving-button.right{
+  background-image:url('/social/assets/flaticons/chevron3.png');
+  float:left;
+}
+#main-box #news-best-box .news-container{
+  float:left;
+  height:100%;
+  overflow-x: hidden;
+  position:relative;
+  width:920px;
+}
+#main-box #news-best-box .news-container .news{
+  cursor:pointer;
+  height:125px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:125px;
+  z-index:1;
+}
+#main-box #news-best-box .news-container .news:hover{
+  z-index:2;
+}
+#main-box #news-best-box .news-container .news img{
+  height:125px;
+  width:125px;
+}
+
+#main-box .footer{
+  border: 0px solid #aaa;
+  border-width:2px 0px 0px 0px;
+  margin-top:20px;
+}
+#main-box .footer .footer-row{
+  padding:10px;
+}
+#main-box .news-main-box{
+  background-color:#ccc;
+  display:none;
+  height:250px;
+  margin:10px 0px;
+  padding:10px;
+}
+
+#main-box .photo-box{
+  border-bottom: 5px double black;
+  height:330px;
+  padding-bottom:10px;
+}
+#main-box .photo-box .avatar{
+  float:left;
+  height:320px;
+  margin:0px 5px;
+  width:320px;
+}
+#main-box .photo-box .avatar img{
+  height:320px;
+  width:320px;
+}
+#main-box .photo-box .preview-column{
+  float:left;
+  height:320px;
+  margin:0px 5px;
+  width:155px;
+}
+#main-box .photo-box .preview-column.col1{
+  margin:0px 5px 0px 0px;
+}
+#main-box .photo-box .preview-column.col5{
+  margin:0px 0px 0px 5px;
+}
+#main-box .photo-box .preview-column img{
+  clear:both;
+  height: 155px;
+  width:155px;
+}
+#main-box .photo-box .preview-column img:first-child{
+  margin-bottom:10px;
+}
