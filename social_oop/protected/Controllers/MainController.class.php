@@ -7,6 +7,6 @@
  */
 class MainController extends Controller {
   
-  public function indexAction(){}
+  public function indexAction(){return array();}
 
 }

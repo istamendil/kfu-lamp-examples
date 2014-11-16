@@ -18,11 +18,13 @@ class Core {
    * @var Array Config array
    */
   private $config = array(
-      'site_subpath' => '/social',
+      'site_subpath' => '/social_oop',
       'default_path' => '/main/index',
   );
   
   // Core
+  
+  private $viewData = array();
 
   /**
    * Load framework, route to relevant controller
@@ -80,16 +82,16 @@ class Core {
         $methodFullName = $methodName.'Action';
         $controller = new $controllerFullName($this);
         if (method_exists($controllerName.'Controller', $methodName.'Action')) {
-          $viewData = call_user_func_array(array($controllerFullName, $methodFullName), array_slice($pathArray, 2));
-          if (!is_array($viewData)) {
-            $viewData = array();
+          $this->viewData = call_user_func_array(array($controllerFullName, $methodFullName), array_slice($pathArray, 2));
+          if (!is_array($this->viewData)) {
+            $this->return500("Cotroller has to return an array for view data.");
           }
-          $this->show_view($controllerName, $methodName, $viewData);
+          $this->show_view($controllerName, $methodName);
         } else {
-          $this->return404(1);
+          $this->return404("No such action.");
         }
       } else {
-        $this->return404();
+        $this->return404("No such controller.");
       }
     }
   }
@@ -102,10 +104,12 @@ class Core {
   
   public function return404($message = '404. Page was not found.') {
     echo '<h3 style="color:#161">' . $message . '</h3>';
+    exit();
   }
 
-  public function return500($message = 'Ошибка сервера') {
+  public function return500($message = '500. Server error.') {
     echo '<h3 style="color:#611">' . $message . '</h3>';
+    exit();
   }
   
   // VIEW
@@ -113,12 +117,28 @@ class Core {
   /**
    * Show view
    */
-  private function show_view($controllerName, $methodName, $data) {
+  private function show_view($controllerName, $methodName) {
     if (file_exists(SOCIAL_SYSTEM_PATH . '/Views/' . $controllerName . '_' . $methodName . '.view.php')) {
+      require SOCIAL_SYSTEM_PATH . '/Views/_header.php';
       require SOCIAL_SYSTEM_PATH . '/Views/' . $controllerName . '_' . $methodName . '.view.php';
+      require SOCIAL_SYSTEM_PATH . '/Views/_footer.php';
     } else {
-      $this->return500();
+      $this->return500("No such view file.");
     }
+  }
+  private function getViewData($name){
+    $data = NULL;
+    if(isset($this->viewData[$name])){
+      $data = $this->viewData[$name];
+    }
+    return $data;
+  }
+  private function getUserData($name){
+    $data = NULL;
+    if(isset($this->viewData['user'][$name])){
+      $data = $this->viewData['user'][$name];
+    }
+    return $data;
   }
 
   
