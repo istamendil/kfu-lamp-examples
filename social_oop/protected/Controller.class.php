@@ -12,7 +12,9 @@ class Controller {
   /**
    * Initialize everything
    */
-  public function __construct() {}
+  public function __construct($core) {
+    $this->core = $core;
+  }
   
   public function __toString(){
     return get_class($this);

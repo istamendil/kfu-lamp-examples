@@ -78,7 +78,7 @@ class Core {
         require_once(SOCIAL_SYSTEM_PATH . '/Controllers/' . $controllerFullName . '.class.php');
         $methodName     = empty($pathArray[2]) ? 'index' : $pathArray[2];
         $methodFullName = $methodName.'Action';
-        $controller = new $controllerFullName;
+        $controller = new $controllerFullName($this);
         if (method_exists($controllerName.'Controller', $methodName.'Action')) {
           $viewData = call_user_func_array(array($controllerFullName, $methodFullName), array_slice($pathArray, 2));
           if (!is_array($viewData)) {
