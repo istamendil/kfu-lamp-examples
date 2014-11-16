@@ -7,7 +7,7 @@
  */
 class Controller {
 
-  private $core;
+  protected $core;
   
   /**
    * Initialize everything

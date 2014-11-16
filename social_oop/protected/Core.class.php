@@ -82,7 +82,7 @@ class Core {
         $methodFullName = $methodName.'Action';
         $controller = new $controllerFullName($this);
         if (method_exists($controllerName.'Controller', $methodName.'Action')) {
-          $this->viewData = call_user_func_array(array($controllerFullName, $methodFullName), array_slice($pathArray, 2));
+          $this->viewData = call_user_func_array(array($controller, $methodFullName), array_slice($pathArray, 2));
           if (!is_array($this->viewData)) {
             $this->return500("Cotroller has to return an array for view data.");
           }
