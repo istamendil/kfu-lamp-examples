@@ -19,7 +19,7 @@ class Core {
    */
   private $config = array(
       'site_subpath' => '/social_oop',
-      'default_path' => '/main/index',
+      'default_path' => '/social_oop/main/index',
   );
   
   // Core
@@ -40,12 +40,12 @@ class Core {
     require_once(SOCIAL_SYSTEM_PATH . '/Controller.class.php'); //Base controller class
     require_once(SOCIAL_SYSTEM_PATH . '/model.func.php');       //ToDo: make proper OOP models
     
-    // ROUTE TO RELEVANT CONTROLLER
+    // START SESSION AND CHECK IF USER HAS BEEN LOGGED IN
+    session_start();
     
-    //get routing dir
-    $requestString = str_replace($this->get('site_subpath'), '', $_SERVER['REQUEST_URI']);
+    // ROUTE TO RELEVANT CONTROLLER
     //Route for request URL
-    $this->route($requestString);
+    $this->route($_SERVER['REQUEST_URI']);
   }
   
   /**
@@ -68,6 +68,9 @@ class Core {
    * Find and call required controller
    */
   public function route($requestString) {
+    // Delete some unnecessary path startings
+    $requestString = str_replace($this->get('site_subpath'), '', $requestString);
+    // Parse URL etc
     $urlArray = parse_url($requestString);
     $pathArray = explode('/', $urlArray['path']);
     unset($pathArray[0]);
@@ -95,6 +98,15 @@ class Core {
       }
     }
   }
+  
+  /**
+   * Load another cotroller
+   */
+  public function reroute($controller, $action, $params){
+    $this->route($this->generate_path($controller, $action, $params));
+    exit();
+  }
+  
   /**
    * Generate link paths
    */
@@ -133,12 +145,19 @@ class Core {
     }
     return $data;
   }
-  private function getUserData($name){
+  public function getUserData($name){
     $data = NULL;
-    if(isset($this->viewData['user'][$name])){
-      $data = $this->viewData['user'][$name];
+    if(isset($_SESSION['user'][$name])){
+      $data = $_SESSION['user'][$name];
     }
     return $data;
+  }
+  public function isLogged(){
+    return ($this->getUserData('id') !== NULL);
+  }
+  public function logout(){
+    $_SESSION['user'] = NULL;
+    $this->reroute('main', 'index', array());
   }
 
   

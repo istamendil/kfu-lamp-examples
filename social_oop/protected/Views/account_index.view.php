@@ -1,7 +1,7 @@
 <?php
 $userInfo =$this->getViewData('userInfo');
 ?>
-<h2><?=$userInfo['realName']?> (<?=$userInfo['rating']?>)</h2>
+<h2><?=$userInfo['realName']?></h2>
 <div class="photo-box">
   <div class="preview-column col1">
     <img src="/social/assets/img/cat_480x480_1.jpeg" alt="Pic">

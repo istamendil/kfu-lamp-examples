@@ -15,6 +15,31 @@
   float:right;
 }
 
+/* Elements */
+.form-line{
+  clear:both;
+}
+.form-line input, .form-line select{
+  display:block;
+  float:left;
+}
+.form-line label{
+  display: block;
+  float:left;
+  width:200px;
+}	  .form-line{
+  clear:both;
+}
+.form-line input, .form-line select{
+  display:block;
+  float:left;
+}
+.form-line label{
+  display: block;
+  float:left;
+  width:200px;
+}
+
 
 #cutemeter{
   background-color:#FFBC79;
@@ -73,8 +98,17 @@
 #main-navigation li a.pets{
   background-image:url("/social/assets/flaticons/complete1.png");
 }
-#main-navigation li a.profile{
+#main-navigation li a.mainpage{
   background-image:url("/social/assets/flaticons/user.png");
+}
+#main-navigation li a.profile{
+  background-image:url("/social/assets/flaticons/large.png");
+}
+#main-navigation li a.login{
+  background-image:url("/social/assets/flaticons/black4.png");
+}
+#main-navigation li a.exit{
+  background-image:url("/social/assets/flaticons/arrow36.png");
 }
 #main-navigation li a.settings{
   background-image:url("/social/assets/flaticons/sprocket1.png");
