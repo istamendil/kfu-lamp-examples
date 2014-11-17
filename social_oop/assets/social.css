@@ -99,10 +99,10 @@
   background-image:url("/social/assets/flaticons/complete1.png");
 }
 #main-navigation li a.mainpage{
-  background-image:url("/social/assets/flaticons/user.png");
+  background-image:url("/social/assets/flaticons/large.png");
 }
 #main-navigation li a.profile{
-  background-image:url("/social/assets/flaticons/large.png");
+  background-image:url("/social/assets/flaticons/user.png");
 }
 #main-navigation li a.login{
   background-image:url("/social/assets/flaticons/black4.png");

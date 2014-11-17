@@ -13,10 +13,9 @@ class AccountController extends Controller {
       $this->core->reroute('account', 'auth', array());
     }
     else{
-      $userId = (int) $this->core->getUserData('id');
-      $info = get_user_info($userId);
+      $info = $this->core->getUserFullData();
       if($info === NULL){
-        $this->core->return404("No user with id ".$userId);
+        $this->core->return500("User session is corrupted.");
       }
       $params = array(
         'userInfo' => $info,

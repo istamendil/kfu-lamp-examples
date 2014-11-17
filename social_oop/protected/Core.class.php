@@ -114,13 +114,13 @@ class Core {
     return $this->get('site_subpath') . '/' . $controllerName . '/' . $methodName . '/' . implode('/', $data);
   }
   
-  public function return404($message = '404. Page was not found.') {
-    echo '<h3 style="color:#161">' . $message . '</h3>';
+  public function return404($message = 'Page was not found.') {
+    echo '<h3 style="color:#161">404. ' . $message . '</h3>';
     exit();
   }
 
-  public function return500($message = '500. Server error.') {
-    echo '<h3 style="color:#611">' . $message . '</h3>';
+  public function return500($message = 'Unkown error.') {
+    echo '<h3 style="color:#611">500. Server error. ' . $message . '</h3>';
     exit();
   }
   
@@ -149,6 +149,13 @@ class Core {
     $data = NULL;
     if(isset($_SESSION['user'][$name])){
       $data = $_SESSION['user'][$name];
+    }
+    return $data;
+  }
+  public function getUserFullData(){
+    $data = NULL;
+    if(isset($_SESSION['user'])){
+      $data = $_SESSION['user'];
     }
     return $data;
   }

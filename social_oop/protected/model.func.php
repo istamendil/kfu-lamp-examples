@@ -40,7 +40,7 @@ function find_user($email, $password){
   if ($handle) {
       $id = 0;
       while (($line = fgets($handle)) !== false) {
-        if(strpos($line, $email) === 0){
+        if(strpos($line, $email.' ') === 0){ //line has to start with email. Space must be after it or we can mull itis@ex.com and itis@ex.com.ua
           // We found our user
           $data = explode(' ', $line);
           // Check password
