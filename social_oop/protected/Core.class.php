@@ -123,11 +123,13 @@ class Core {
   }
   
   public function return404($message = 'Page was not found.') {
+    http_response_code(404);
     echo '<h3 style="color:#161">404. ' . $message . '</h3>';
     exit();
   }
 
   public function return500($message = 'Unkown error.') {
+    http_response_code(500);
     echo '<h3 style="color:#611">500. Server error. ' . $message . '</h3>';
     exit();
   }
