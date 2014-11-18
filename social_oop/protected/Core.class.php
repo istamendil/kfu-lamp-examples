@@ -102,8 +102,16 @@ class Core {
   /**
    * Load another cotroller
    */
-  public function reroute($controller, $action, $params){
+  public function forward($controller, $action, $params){
     $this->route($this->generate_path($controller, $action, $params));
+    exit();
+  }
+  /**
+   * Send 302 and location header
+   */
+  public function redirect($controller, $action, $params){
+    $url = $this->generate_path($controller, $action, $params);
+    header('Location: '.$url);
     exit();
   }
   
@@ -164,7 +172,7 @@ class Core {
   }
   public function logout(){
     $_SESSION['user'] = NULL;
-    $this->reroute('main', 'index', array());
+    $this->redirect('main', 'index', array());
   }
 
   

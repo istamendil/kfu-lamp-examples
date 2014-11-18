@@ -10,7 +10,7 @@ class AccountController extends Controller {
   public function indexAction(){
     $params = array();
     if(!$this->core->isLogged()){
-      $this->core->reroute('account', 'auth', array());
+      $this->core->forward('account', 'auth', array());
     }
     else{
       $info = $this->core->getUserFullData();
@@ -92,7 +92,7 @@ class AccountController extends Controller {
       // Find such user in data file
       if(count($notices) === 0){
         $_SESSION['user'] = $user;
-        $success = 'You was logged in! <a href="'.$this->core->generate_path('account', 'index', array()).'">You can open you account page</a>';
+        $this->core->redirect('account', 'index', array());
       }
     }
     return array(

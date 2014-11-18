@@ -8,25 +8,20 @@ if(count($this->getViewData('notices'))){
   }
   echo '</ul><br>';
 }
-elseif($this->getViewData('success')){
-  echo '<h4>'.$this->getViewData('success').'</h4>';
-}
 
 // Auth form
-if( count($this->getViewData('notices')) || !$this->getViewData('success')){
-  ?>
-  <form action="" method="POST">
-    <div class="form-line">
-      <label for="email">E-mail</label>
-      <input type="email" name="email" id="email" placeholder="itis@example.com" required<?=(isset($_POST['email'])?' value="'.$_POST['email'].'"':'')?>>
-    </div>
-    <div class="form-line">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required>
-    </div>
-    <div class="form-line">
-      <input type="submit" name="auth" value="Auth">
-    </div>
-  </form>
-  <?php
-}
+?>
+<form action="" method="POST">
+  <div class="form-line">
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email" placeholder="itis@example.com" required<?=(isset($_POST['email'])?' value="'.$_POST['email'].'"':'')?>>
+  </div>
+  <div class="form-line">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+  </div>
+  <div class="form-line">
+    <input type="submit" name="auth" value="Auth">
+  </div>
+</form>
+<?php
