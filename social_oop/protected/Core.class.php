@@ -20,6 +20,7 @@ class Core {
   private $config = array(
       'site_subpath' => '/social_oop',
       'default_path' => '/social_oop/main/index',
+      'upload_path'  => '/social_oop/assets/uploads', //site path - not server dir
   );
   
   // Core
@@ -32,6 +33,7 @@ class Core {
   private function __construct() {
     
     // We can load config from external file to $this->config here
+    $this->config['upload_dir'] = SOCIAL_SYSTEM_PATH.'/../assets/uploads'; //server dir for uploads
     
     // LOAD FRAMEWORK
      
