@@ -118,8 +118,12 @@ class Core {
   /**
    * Generate link paths
    */
-  public function generate_path($controllerName, $methodName, $data) {
-    return $this->get('site_subpath') . '/' . $controllerName . '/' . $methodName . '/' . implode('/', $data);
+  public function generate_path($controller, $method, $data = array()) {
+    $url = $this->get('site_subpath') . '/' . $controller . '/';
+    if( $method !== 'index' || count($data) !== 0 ){
+      $url .= $method . '/' . implode('/', $data);
+    }
+    return $url;
   }
   
   public function return404($message = 'Page was not found.') {
@@ -174,7 +178,6 @@ class Core {
   }
   public function logout(){
     $_SESSION['user'] = NULL;
-    $this->redirect('main', 'index', array());
   }
 
   

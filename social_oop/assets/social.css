@@ -107,6 +107,9 @@
 #main-navigation li a.login{
   background-image:url("/social/assets/flaticons/black4.png");
 }
+#main-navigation li a.register{
+  background-image:url("/social/assets/flaticons/add9.png");
+}
 #main-navigation li a.exit{
   background-image:url("/social/assets/flaticons/arrow36.png");
 }
