@@ -93,6 +93,26 @@ function find_user($email, $password = ''){
   
   return $user;
 }
+function get_all_users(){
+  $users = array();
+  // Open file only for reading
+  $handle = fopen(SOCIAL_SYSTEM_PATH.'/data/users', "r");
+  if ($handle) {
+      $id = 0;
+      while (($line = fgets($handle)) !== false) {
+        // One more user
+        $data = decrypt_user_row($line);
+        $data['id'] = $id;
+        $users[] = $data;
+        $id++;
+      }
+  } else {
+    trigger_error("Can't open user DB.", E_USER_ERROR);
+  } 
+  fclose($handle);
+  
+  return $users;
+}
 
 function encrypt_picture_row($data){
   foreach($data as $name => $val){

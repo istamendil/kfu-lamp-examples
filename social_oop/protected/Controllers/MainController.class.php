@@ -7,6 +7,10 @@
  */
 class MainController extends Controller {
   
-  public function indexAction(){return array();}
+  public function indexAction(){
+    return array(
+        'users' => get_all_users()
+        );
+  }
 
 }
