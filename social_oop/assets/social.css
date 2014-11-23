@@ -110,6 +110,9 @@
 #main-navigation li a.register{
   background-image:url("/social/assets/flaticons/add9.png");
 }
+#main-navigation li a.add-picture{
+  background-image:url("/social/assets/flaticons/camera1.png");
+}
 #main-navigation li a.exit{
   background-image:url("/social/assets/flaticons/arrow36.png");
 }
@@ -180,7 +183,8 @@
 #main-box .footer{
   border: 0px solid #aaa;
   border-width:2px 0px 0px 0px;
-  margin-top:20px;
+  clear:both;
+  margin-top:50px;
 }
 #main-box .footer .footer-row{
   padding:10px;

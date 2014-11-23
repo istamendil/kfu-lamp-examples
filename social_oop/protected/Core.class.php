@@ -21,6 +21,8 @@ class Core {
       'site_subpath' => '/social_oop',
       'default_path' => '/social_oop/main/index',
       'upload_path'  => '/social_oop/assets/uploads', //site path - not server dir
+      'minimum_user_pictures_amount' => 19, // Amount of pictures at user's gallery
+      'default_user_picture' => '../flaticons/image.png', // Default picture for user page gallery
   );
   
   // Core

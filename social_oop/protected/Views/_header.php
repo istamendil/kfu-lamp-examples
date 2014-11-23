@@ -22,6 +22,7 @@
       if($this->isLogged()){
         ?>
           <li><a href="<?=$this->generate_path('account', 'index')?>" class="profile" title="My Profile"></a></li>
+          <li><a href="<?=$this->generate_path('account', 'upload')?>" class="add-picture" title="Upload a picture"></a></li>
           <li><a href="<?=$this->generate_path('security', 'exit')?>" class="exit" title="Exit"></a></li>
         <?php
       }
@@ -39,7 +40,14 @@
       ?>
       <!-- Likemeter -->
       <div id="cutemeter">
-        <?=$this->getUserData('rating')?>
+        <?php
+          $rating = $this->getUserData('rating');
+          if($rating > 999){
+            $rating = (int) ($rating/1000);
+            $rating .= 'K';
+          }
+          echo $rating;
+        ?>
       </div>
       <?php
     }

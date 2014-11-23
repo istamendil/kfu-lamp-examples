@@ -10,12 +10,16 @@ if(count($this->getViewData('notices'))){
 }
 
 if($this->getViewData('success')){
-  echo '<h3>File has been uploaded successfully</h3>';
-  echo '<div><a href="'.$this->getViewData('uploadPath').'" target="_blank">'.$this->getViewData('uploadPath').'</a></div>';
+  $images = $this->getViewData('uploadPath');
+  echo '<h4>File has been uploaded successfully</h4>';
+  foreach($images as $image){
+    echo '<div><a href="'.$image.'" target="_blank">'.$image.'</a></div>';
+  }
 }
 
 // Upload form
 ?>
+<h3>Here you can upload new photos to your account.</h3>
 <form method="POST" action="<?=$this->generate_path('account', 'upload')?>" enctype="multipart/form-data">
   <input type="hidden" name="MAX_FILE_SIZE" value="4000000">
   <input type="file" name="upload">

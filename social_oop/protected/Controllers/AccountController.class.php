@@ -12,13 +12,7 @@ class AccountController extends Controller {
     if (!$this->core->isLogged()) {
       $this->core->forward('security', 'auth', array());
     } else {
-      $info = $this->core->getUserFullData();
-      if ($info === NULL) {
-        $this->core->return500("User session is corrupted.");
-      }
-      $params = array(
-          'userInfo' => $info,
-      );
+      $this->core->forward('account', 'show', array('id' => $this->core->getUserData('id')));
     }
     return $params;
   }
@@ -29,8 +23,28 @@ class AccountController extends Controller {
     if ($info === NULL) {
       $this->core->return404("No user with id " . $userId);
     }
+    
+    //get user pictures
+    $pictures = get_user_pictures($userId);
+    if(count($pictures) < $this->core->get('minimum_user_pictures_amount')){
+      $dummyPicture = array(
+              'userId'     => $userId,
+              'path'       => $this->core->get('default_user_picture'),
+              'small_path' => $this->core->get('default_user_picture'),
+              'name'       => "User didn't upload enough pictures.",
+              'rating'     => 0,
+              );
+      $dummyArray = array_fill(
+              count($pictures),
+              $this->core->get('minimum_user_pictures_amount')-count($pictures),
+              $dummyPicture
+              );
+      $pictures = array_merge($pictures, $dummyArray);
+    }
+    
     $params = array(
         'userInfo' => $info,
+        'pictures' => $pictures,
     );
     return $params;
   }
@@ -43,7 +57,7 @@ class AccountController extends Controller {
     
     $notices = array();
     $success = FALSE;
-    $uploadedPath = '';
+    $uploadedPaths = '';
     if (!empty($_FILES['upload'])) {
       switch ($_FILES['upload']['error']) {
         case UPLOAD_ERR_OK:
@@ -79,15 +93,48 @@ class AccountController extends Controller {
           $notices[] = 'Failed to move uploaded file.';
         }
         else{
-          $success = TRUE;
-          $uploadedPath = 'http://'.$_SERVER['SERVER_NAME'].$this->core->get('upload_path').'/'.$newName.'.'.$ext;
+          $error = add_picture($this->core->getUserData('id'), $newName.'.'.$ext);
+          if($error !== TRUE){
+            $notices[] = $error;
+          }
+          else{
+            $success = TRUE;
+            $uploadedPaths[] = 'http://'.$_SERVER['SERVER_NAME'].$this->core->get('upload_path').'/'.$newName.'.'.$ext;
+            
+            
+            // Make thumbnails
+            $width  = 160;
+            $height = 160;
+            list($width_orig, $height_orig) = getimagesize($this->core->get('upload_dir').'/'.$newName.'.'.$ext);
+            $ratio_orig = $width_orig/$height_orig;
+            if ($width/$height > $ratio_orig) {
+               $width = $height*$ratio_orig;
+            } else {
+               $height = $width/$ratio_orig;
+            }
+            $image_mini = imagecreatetruecolor($width, $height);
+            switch($ext){
+              case 'bmp': $image_original = imagecreatefromwbmp($this->core->get('upload_dir').'/'.$newName.'.'.$ext); break;
+              case 'gif': $image_original = imagecreatefromgif ($this->core->get('upload_dir').'/'.$newName.'.'.$ext); break;
+              case 'jpg': $image_original = imagecreatefromjpeg($this->core->get('upload_dir').'/'.$newName.'.'.$ext); break;
+              case 'png': $image_original = imagecreatefrompng ($this->core->get('upload_dir').'/'.$newName.'.'.$ext); break;
+            }
+            imagecopyresampled($image_mini, $image_original, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+            switch($ext){
+              case 'bmp': imagewbmp($image_mini, $this->core->get('upload_dir').'/mini_'.$newName.'.'.$ext); break;
+              case 'gif': imagegif ($image_mini, $this->core->get('upload_dir').'/mini_'.$newName.'.'.$ext); break;
+              case 'jpg': imagejpeg($image_mini, $this->core->get('upload_dir').'/mini_'.$newName.'.'.$ext); break;
+              case 'png': imagepng ($image_mini, $this->core->get('upload_dir').'/mini_'.$newName.'.'.$ext); break;
+            }
+            $uploadedPaths[] = 'http://'.$_SERVER['SERVER_NAME'].$this->core->get('upload_path').'/mini_'.$newName.'.'.$ext;
+          }
         }
       }
     }
     return array(
         'notices'    => $notices,
         'success'    => $success,
-        'uploadPath' => $uploadedPath,
+        'uploadPath' => $uploadedPaths,
     );
   }
 

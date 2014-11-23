@@ -24,4 +24,3 @@ if(count($this->getViewData('notices'))){
     <input type="submit" name="auth" value="Auth">
   </div>
 </form>
-<?php
