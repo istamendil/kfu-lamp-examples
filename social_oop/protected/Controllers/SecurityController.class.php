@@ -48,7 +48,11 @@ class SecurityController extends Controller {
         $notices[] = 'Please fill all fields marked with *.';
       }
       else{
-        //User has to repeat password
+        //Email must be valid
+        if(!preg_match('/^[a-z0-9\-_]*@(?:[a-z0-9\-_]*\.)+[a-z]{2,}$/i', $_POST['email'])){
+          $notices[] = 'Passwords are not match each other.';
+        }
+        //User must repeat password
         if($_POST['password'] !== $_POST['repassword']){
           $notices[] = 'Passwords are not match each other.';
         }
@@ -64,12 +68,16 @@ class SecurityController extends Controller {
           'password' => md5($_POST['password']),
           'realName' => $_POST['realName'],
           'sex'      => (isset($_POST['sex'])?$_POST['sex']:'-1'),
-          'subscribtion' => (isset($_POST['subscribtion'])?'1':'0'),
+          'subscription' => (isset($_POST['subscription'])?TRUE:FALSE),
           'rating'   => rand(0, 999),
         );
-        add_user($data) !== FALSE
-                       or die('Error with writing to DB!');
-        $success = 'You was registered! <a href="'.$this->core->generate_path('account', 'auth', array()).'">You can log in now</a>';
+        $error = add_user($data);
+        if($error !== TRUE){
+          $notices[] = $error;
+        }
+        else{
+          $success = 'You was registered! <a href="'.$this->core->generate_path('account', 'auth', array()).'">You can log in now</a>';
+        }
       }
     }
     return array(
