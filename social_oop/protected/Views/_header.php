@@ -3,16 +3,16 @@
   <head>
     <title>E-Meet: Cute Animals (EM:CA)</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="<?=$this->get('site_subpath')?>/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?=$this->get('site_subpath')?>/assets/js/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="<?=$this->get('site_subpath')?>/assets/social.css">
+    <link rel="stylesheet" href="<?=$this->get('site_path')?>/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=$this->get('site_path')?>/assets/js/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="<?=$this->get('site_path')?>/assets/social.css">
 
     <meta name="description" content="Социальная сеть для любителей ми-ми-ми-животных">
     <meta name="keywords" content="ми-ми-ми, животные, социальная сеть">
 
-    <script src="<?=$this->get('site_subpath')?>/assets/js/jquery-2.1.1.min.js"></script>
-    <script src="<?=$this->get('site_subpath')?>/assets/js/main.js"></script>
-    <script src="<?=$this->get('site_subpath')?>/assets/js/magnific-popup/jquery.magnific-popup.js"></script> 
+    <script src="<?=$this->get('site_path')?>/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="<?=$this->get('site_path')?>/assets/js/main.js"></script>
+    <script src="<?=$this->get('site_path')?>/assets/js/magnific-popup/jquery.magnific-popup.js"></script> 
   </head>
   <body>
     <!-- Navigation -->

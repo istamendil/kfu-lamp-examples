@@ -17,13 +17,7 @@ class Core {
    *
    * @var Array Config array
    */
-  private $config = array(
-      'site_subpath' => '/social_oop',
-      'default_path' => '/social_oop/main/index',
-      'upload_path'  => '/social_oop/assets/uploads', //site path - not server dir
-      'minimum_user_pictures_amount' => 19, // Amount of pictures at user's gallery
-      'default_user_picture' => '../flaticons/image.png', // Default picture for user page gallery
-  );
+  private $config = array();
   
   // Core
   
@@ -34,8 +28,21 @@ class Core {
    */
   private function __construct() {
     
-    // We can load config from external file to $this->config here
-    $this->config['upload_dir'] = SOCIAL_SYSTEM_PATH.'/../assets/uploads'; //server dir for uploads
+    // Load config and update dynamic values
+    $config = file_get_contents(SOCIAL_SYSTEM_PATH . '/config.json');
+    if(!$config){
+      exit("Can't open config file.");
+    }
+    $config = json_decode($config);
+    if(!isset($config->site_path)){
+      exit("Configuration value site_path must be defined.");
+    }
+    $changeFrom = array('%SYSTEM_PATH%', '%SITE_PATH%');
+    $changeTo   = array(SOCIAL_SYSTEM_PATH, $config->site_path);
+    foreach($config as $name => $value){
+      $config->$name = str_replace($changeFrom, $changeTo, $value);
+    }
+    $this->config = $config;
     
     // LOAD FRAMEWORK
      
@@ -60,9 +67,9 @@ class Core {
    */
   public function get($name){
     $value = NULL;
-    if(isset($this->config[$name])){
-      $value = $this->config[$name];
-    }
+    if(isset($this->config->$name)){
+      $value = $this->config->$name;
+;    }
     return $value;
   }
   
@@ -73,7 +80,7 @@ class Core {
    */
   public function route($requestString) {
     // Delete some unnecessary path startings
-    $requestString = str_replace($this->get('site_subpath'), '', $requestString);
+    $requestString = str_replace($this->get('site_path'), '', $requestString);
     // Parse URL etc
     $urlArray = parse_url($requestString);
     $pathArray = explode('/', $urlArray['path']);
@@ -123,7 +130,7 @@ class Core {
    * Generate link paths
    */
   public function generate_path($controller, $method, $data = array()) {
-    $url = $this->get('site_subpath') . '/' . $controller . '/';
+    $url = $this->get('site_path') . '/' . $controller . '/';
     if( $method !== 'index' || count($data) !== 0 ){
       $url .= $method . '/' . implode('/', $data);
     }

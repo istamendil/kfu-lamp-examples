@@ -1,0 +1,8 @@
+{
+  "site_path": "/social_oop",
+  "default_path": "%SITE_PATH%/main/index",
+  "upload_path": "%SITE_PATH%/assets/uploads",
+  "minimum_user_pictures_amount": 19,
+  "default_user_picture": "../flaticons/image.png",
+  "upload_dir": "%SYSTEM_PATH%/../assets/uploads"
+}
