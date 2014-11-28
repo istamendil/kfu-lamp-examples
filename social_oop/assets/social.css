@@ -96,29 +96,37 @@
   border-color:#D33714;
 }
 #main-navigation li a.pets{
-  background-image:url("/social/assets/flaticons/complete1.png");
+  background-image:url("/social_oop/assets/flaticons/complete1.png");
 }
 #main-navigation li a.mainpage{
-  background-image:url("/social/assets/flaticons/large.png");
+  background-image:url("/social_oop/assets/flaticons/large.png");
 }
 #main-navigation li a.profile{
-  background-image:url("/social/assets/flaticons/user.png");
+  background-image:url("/social_oop/assets/flaticons/user.png");
 }
 #main-navigation li a.login{
-  background-image:url("/social/assets/flaticons/black4.png");
+  background-image:url("/social_oop/assets/flaticons/black4.png");
+  background-position:1px -3px;
 }
 #main-navigation li a.register{
-  background-image:url("/social/assets/flaticons/add9.png");
+  background-image:url("/social_oop/assets/flaticons/add9.png");
+  background-position:0px -2px;
 }
 #main-navigation li a.add-picture{
-  background-image:url("/social/assets/flaticons/camera1.png");
+  background-image:url("/social_oop/assets/flaticons/camera1.png");
+  background-position:0px -2px;
 }
 #main-navigation li a.exit{
-  background-image:url("/social/assets/flaticons/arrow36.png");
+  background-image:url("/social_oop/assets/flaticons/arrow36.png");
+  background-position:0px -2px;
 }
 #main-navigation li a.settings{
-  background-image:url("/social/assets/flaticons/sprocket1.png");
+  background-image:url("/social_oop/assets/flaticons/sprocket1.png");
   background-position:1px;
+}
+#main-navigation li a.chats{
+  background-image:url("/social_oop/assets/flaticons/mail.png");
+  background-position:0px -3px;
 }
 
 #main-box{
@@ -231,4 +239,45 @@
 }
 #main-box .photo-box .preview-column img:first-child{
   margin-bottom:10px;
+}
+
+.chats-table .open-chat img{
+  height:30px;
+}
+.chat-messages{
+  clear:both;
+  margin-bottom:30px;
+}
+.chat-messages .message{
+  border-radius:20px;
+  clear:both;
+  display:inline-block;
+  float:left;
+  margin-bottom:10px;
+  max-width: 60%;
+  padding:5px 10px;
+}
+.chat-messages .message.from{
+  background-color:#9EE8FF;
+  float:left;
+  text-align:left;
+}
+.chat-messages .message.to{
+  background-color:#C1FF9E;
+  float:right;
+  text-align:right;
+}
+.chat-messages .message .time{
+  font-size:12px;
+  font-weight:bold;
+}
+.chat-messages .message .text{
+  font-size:25px;
+}
+.chat-messages .message .user{
+  font-size:15px;
+  font-weight:bold;
+}
+form.send-message{
+  
 }

@@ -2,7 +2,7 @@
 $userInfo = $this->getViewData('userInfo');
 $pictures = $this->getViewData('pictures');
 ?>
-<h2><?=$userInfo['realName']?> (<?=$userInfo['rating']?>)</h2>
+<h2><?=$userInfo['name']?> (<?=$userInfo['rating']?>)</h2>
 <div class="photo-box">
   <div class="preview-column col1">
     <img src="<?=$this->get('upload_path').'/'.$pictures[4]['small_path']?>" alt="<?=$pictures[4]['name'].' &ndash; '.$pictures[4]['rating']?>">
@@ -40,3 +40,20 @@ $pictures = $this->getViewData('pictures');
   <div class="moving-button right"></div>
 </div>
 <div class="news-main-box">Rest news</div>
+
+<script>
+  
+
+// Run all animations and listeners etc here
+$(document).ready(function(){
+  bestNewsSlider = new GeometrySlider();
+  bestNewsSlider.init("#news-best-box .news-container", 100);
+  
+  //slider popups
+  $("#news-best-box .news-container").magnificPopup({
+    delegate: 'a',
+    type: 'image'
+  });
+
+});
+</script>

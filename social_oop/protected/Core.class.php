@@ -13,6 +13,11 @@ class Core {
    */
   private static $_instance;
   
+  // Should header and footer be included?
+  const VIEW_FULL = 1;
+  const VIEW_HTML = 2;
+  private $viewType;
+  
   /**
    *
    * @var Array Config array
@@ -43,6 +48,9 @@ class Core {
       $config->$name = str_replace($changeFrom, $changeTo, $value);
     }
     $this->config = $config;
+    
+    // View type
+    $this->viewType = self::VIEW_FULL;
     
     // LOAD FRAMEWORK
      
@@ -100,7 +108,15 @@ class Core {
           if (!is_array($this->viewData)) {
             $this->return500("Cotroller has to return an array for view data.");
           }
-          $this->show_view($controllerName, $methodName);
+          // AJAX?
+          if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $this->viewType !== self::VIEW_HTML ){
+            // Then JSON
+            echo json_encode($this->viewData);
+          }
+          else{
+            // Simpel template
+            $this->show_view($controllerName, $methodName);
+          }
         } else {
           $this->return404("No such action.");
         }
@@ -156,9 +172,20 @@ class Core {
    */
   private function show_view($controllerName, $methodName) {
     if (file_exists(SOCIAL_SYSTEM_PATH . '/Views/' . $controllerName . '_' . $methodName . '.view.php')) {
-      require SOCIAL_SYSTEM_PATH . '/Views/_header.php';
+      if($this->viewType === self::VIEW_FULL){
+        require SOCIAL_SYSTEM_PATH . '/Views/_header.php';
+      }
       require SOCIAL_SYSTEM_PATH . '/Views/' . $controllerName . '_' . $methodName . '.view.php';
-      require SOCIAL_SYSTEM_PATH . '/Views/_footer.php';
+      if($this->viewType === self::VIEW_FULL){
+        require SOCIAL_SYSTEM_PATH . '/Views/_footer.php';
+      }
+    } else {
+      $this->return500("No such view file.");
+    }
+  }
+  private function include_view($name){
+    if (file_exists(SOCIAL_SYSTEM_PATH . '/Views/_' . $name . '.view.php')) {
+      require SOCIAL_SYSTEM_PATH . '/Views/_' . $name . '.view.php';
     } else {
       $this->return500("No such view file.");
     }
@@ -189,6 +216,15 @@ class Core {
   }
   public function logout(){
     $_SESSION['user'] = NULL;
+  }
+  
+  public function setViewType($type){
+    if(in_array($type, array(self::VIEW_FULL, self::VIEW_HTML))){
+      $this->viewType = $type;
+    }
+    else{
+      trigger_error("Unsuported View type value.", E_USER_ERROR);
+    }
   }
 
   

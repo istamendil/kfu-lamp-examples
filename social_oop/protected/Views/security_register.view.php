@@ -29,8 +29,8 @@ if( count($this->getViewData('notices')) || !$this->getViewData('success')){
       <input type="password" name="repassword" id="repassword" required<?=(isset($_POST['repassword'])?' value="'.$_POST['repassword'].'"':'')?>>
     </div>
     <div class="form-line">
-      <label for="realName">Real name *</label>
-      <input type="text" name="realName" id="realName" placeholder="Ivan" required<?=(isset($_POST['realName'])?' value="'.$_POST['realName'].'"':'')?>>
+      <label for="name">Real name *</label>
+      <input type="text" name="name" id="name" placeholder="Ivan" required<?=(isset($_POST['name'])?' value="'.$_POST['name'].'"':'')?>>
     </div>
     <div class="form-line">
       <label for="sex">Sex</label>

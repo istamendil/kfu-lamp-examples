@@ -44,7 +44,7 @@ class SecurityController extends Controller {
     //Has user submit a form?
     if(isset($_POST['register'])){
       //Check submitted data
-      if(!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['repassword']) || !isset($_POST['realName'])){
+      if(!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['repassword']) || !isset($_POST['name'])){
         $notices[] = 'Please fill all fields marked with *.';
       }
       else{
@@ -66,7 +66,7 @@ class SecurityController extends Controller {
         $data = array(
           'email'    => $_POST['email'],
           'password' => md5($_POST['password']),
-          'realName' => $_POST['realName'],
+          'name'     => $_POST['name'],
           'sex'      => (isset($_POST['sex'])?$_POST['sex']:'-1'),
           'subscription' => (isset($_POST['subscription'])?TRUE:FALSE),
           'rating'   => rand(0, 999),
@@ -76,7 +76,7 @@ class SecurityController extends Controller {
           $notices[] = $error;
         }
         else{
-          $success = 'You was registered! <a href="'.$this->core->generate_path('account', 'auth', array()).'">You can log in now</a>';
+          $success = 'You was registered! <a href="'.$this->core->generate_path('security', 'auth', array()).'">You can log in now</a>';
         }
       }
     }

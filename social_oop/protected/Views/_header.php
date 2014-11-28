@@ -22,6 +22,7 @@
       if($this->isLogged()){
         ?>
           <li><a href="<?=$this->generate_path('account', 'index')?>" class="profile" title="My Profile"></a></li>
+          <li><a href="<?=$this->generate_path('social', 'chats')?>" class="chats" title="Your chats"></a></li>
           <li><a href="<?=$this->generate_path('account', 'upload')?>" class="add-picture" title="Upload a picture"></a></li>
           <li><a href="<?=$this->generate_path('security', 'exit')?>" class="exit" title="Exit"></a></li>
         <?php

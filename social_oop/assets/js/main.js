@@ -128,16 +128,3 @@ GeometrySlider = function(){
     return parseInt(th.calculateY(left) * containerHeight * 0.4 + containerHeight * 0.3 - height * 0.5);
   };
 };
-
-// Run all animations and listeners etc here
-$(document).ready(function(){
-  bestNewsSlider = new GeometrySlider();
-  bestNewsSlider.init("#news-best-box .news-container", 100);
-  
-  //slider popups
-  $("#news-best-box .news-container").magnificPopup({
-    delegate: 'a',
-    type: 'image'
-  });
-
-});
